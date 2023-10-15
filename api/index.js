@@ -117,13 +117,13 @@ app.put('/post', async(req, res)=>{
     })
 })
 app.get("/post",upload.single('file'), async(req, res)=>{
-    const posts = await Post.find().populate('author', ['username']).sort({createdAt:-1}).limit(20)
+    const posts = await Post.find().populate('author', ['username'])
     res.json(posts)
 })
 
 app.get("/post/:id", async(req, res)=>{
     const {id} = req.params;
-    const postdata =await Post.findById(id).populate('author', ['username']);
+    const postdata =await Post.findById(id).populate('author', ['username'])
     console.log(postdata)
     res.json(postdata);
 })

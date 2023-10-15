@@ -12,18 +12,18 @@ function EditPost() {
 
     useEffect(() => {
         fetch(`http://localhost:4000/post/${id}`)
-            .then(response => {
-                
-                response.json().then(postInfo => {
-                    console.log(postInfo)
+            .then(response => {                
+                response.json().then(info => {
+                    //console.log(postInfo)
                     //setPostinfo(postInfo)
+                    setTitle(info.title)
+                    setSummary(info.summary)
+                    setContent(info.content)
+                    setFiles(info.cover)
                     
                 })
             })
-            // setTitle(info.title)
-            // setSummary(info.summary)
-            // setContent(info.content)
-            // setFiles(info.cover)
+           
     }, [])
 
     const UpdatePost = async (e) => {
@@ -66,6 +66,7 @@ function EditPost() {
                     value={summary}
                     onChange={e => setSummary(e.target.value)}
                 ></input>
+                <img src={`http://localhost:4000/uploades/${files}`} style={{width:150}}></img>
                 <input
                     type='file'
                     onChange={e => setFiles(e.target.files)}
